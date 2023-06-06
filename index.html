@@ -1,4 +1,4 @@
-<?php include'mail.php'?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -69,7 +69,25 @@
                                  
         <h2><div class="s"><button type="submit" cursor:pointer style="background:orange;font-size:18px;color:white; border-radius:30px;outline:none;" name="">submit</button></div></h2>
        
-        <h2><divclass="j"><button type="submit" cursor:pointer style="background:orange;font-size:18px;color:white; border-radius:30px</outline:none;" name="">VIEW SPREADSHEET</button>divclass></div></h2>
+        <h2><div class="j"><button type="submit" cursor:pointer style="background:orange;font-size:18px;color:white; border-radius:30px</outline:none;" name="">VIEW SPREADSHEET</button></div></h2>
+
+        <script>
+            let url='https://script.google.com/macros/s/AKfycbxZEtaSYamKRjqDrWUzMOCBSShEgWEiW2Vmri-rsi_o28updZ_UhksG1Y6N0VisDQNM/exec';
+            let form=document.querySelector('#form');
+            form.addEventListener("submit",(e)=>{
+              e.target.btn.innerHTML="Sending....";
+               let d=new FormData(form);
+               fetch(url,{
+                 method:"POST",
+                 body:d
+               }).then((res)=>res.text())
+               .then((finalRes)=>{
+                 e.target.btn.innerHTML="submitted";
+                 document.getElementById("res").innerHTML=finalRes;
+                 }) 
+               e.preventDefault();
+            })
+          </script>
         
      </form>
  
